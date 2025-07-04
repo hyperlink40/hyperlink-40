@@ -1,4 +1,6 @@
-# hyperlink-40# hyperlink-40
+# hyperlink-40
+
+A simple PHP blog platform using SQLite.
 
 A simple PHP blog platform using SQLite.
 
