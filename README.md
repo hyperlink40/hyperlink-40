@@ -1,74 +1,45 @@
-<!DOCTYPE HTML>
-html lang="en">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hyperlink-40 - PHP Blog Platform</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2em; background: #fafbfc; color: #222; }
-    h1, h2 { color: #2c3e50; }
-    pre, code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
-    ul { margin-bottom: 1.5em; }
-    .section { margin-bottom: 2em; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Blog - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>hyperlink-40</h1>
-  <p>A simple PHP blog platform using SQLite.</p>
-  <div class="section">
-    <h2>Features</h2>
-    <ul>
-      <li>Admin login/logout</li>
-      <li>Create, edit, and delete blog posts (with image upload)</li>
-      <li>Static pages support</li>
-      <li>Like system for posts</li>
-      <li>(Optional) Comments system</li>
-    </ul>
-  </div>
-  <div class="section">
-    <h2>Getting Started</h2>
-    <ol>
-      <li>
-        <strong>Clone the repository:</strong>
-        <pre><code>git clone [your-repo-url]
-cd hyperlink-40/blog</code></pre>
-        <pre><code># replace [your-repo-url] with the actual repository URL</code></pre>
-      </li>
-      <li>
-        <strong>Initialize the database:</strong>
-        <pre><code>php init_db.php</code></pre>
-      </li>
-      <li>
-        <strong>Run with PHP’s built-in server:</strong>
-        <pre><code>php -S localhost:8000</code></pre>
-        <p>Then open <a href="http://localhost:8000/admin.php">http://localhost:8000/admin.php</a> in your browser.</p>
-      </li>
-      <li>
-        <strong>Default Admin Login:</strong>
-        <ul>
-          <li>Username: <code>admin</code></li>
-          <li>Password: <code>password123</code></li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-  <div class="section">
-    <h2>Folder Structure</h2>
-    <ul>
-      <li><code>blog/</code> - Main PHP application</li>
-      <li><code>uploads/</code> - Uploaded images</li>
-    </ul>
-  </div>
-  <div class="section">
-    <h2>Security Notes</h2>
-    <ul>
-      <li>Change the default admin password after first login.</li>
-      <li>File uploads are not fully validated—add checks in production.</li>
-    </ul>
-  </div>
-  <div class="section">
-    <h2>License</h2>
-    <p>MIT</p>
-  </div>
+<body class="bg-white text-black font-roboto min-h-screen flex flex-col">
+    <nav class="bg-black text-white p-4 flex justify-between items-center">
+        <a href="index.php" class="text-xl font-bold">Simple Blog</a>
+        <div>
+            <a href="admin.php" class="hover:underline">Admin</a>
+        </div>
+    </nav>
+    <main class="flex-grow container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-6">Latest Posts</h1>
+        <?php if (empty($posts)): ?>
+            <p>No posts yet. Check back soon!</p>
+        <?php else: ?>
+            <div class="grid gap-8 md:grid-cols-2">
+                <?php foreach ($posts as $post): ?>
+                    <div class="border border-gray-300 rounded p-4 shadow bg-white">
+                        <h2 class="text-2xl font-bold mb-2">
+                            <?= htmlspecialchars($post['title']) ?>
+                        </h2>
+                        <?php if (!empty($post['image'])): ?>
+                            <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post Image" class="max-h-48 mb-2 rounded" />
+                        <?php endif; ?>
+                        <p class="mb-2 text-gray-700">
+                            <?= nl2br(htmlspecialchars($post['excerpt'])) ?>
+                        </p>
+                        <a href="post.php?id=<?= $post['id'] ?>" class="text-blue-600 hover:underline">Read More</a>
+                        <div class="text-xs text-gray-500 mt-2">Posted on <?= htmlspecialchars($post['created_at']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </main>
+    <footer class="bg-black text-white p-4 text-center">
+        &copy; <?= date('Y') ?> Simple Blog. All rights reserved.
+    </footer>
 </body>
 </html>
