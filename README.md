@@ -30,8 +30,6 @@ html lang="en">
     <ol>
       <li>
         <strong>CONNECTTO GIRS AROUND YOUR CITY:</strong>
-        <pre><code>git clone [your-repo-url]
- hyperlink-/blog</code></pre>
         <pre><code># replace </code></pre>
       </li>
       <li>
@@ -41,10 +39,10 @@ html lang="en">
       <li>
         <strong>BEST CONNECTIONS</strong>
         <pre><I</code></pre>
-        <p>Then open <a href="</a> in your BROWSER </p>
+        <p>Then open  </p>
       </li>
       <li>
-        <strong>Default Admin Login:</strong>
+        <strong>Default :</strong>
         <ul>
           <li>Username: <code>admin</code></li>
           <li>Password: <code>password123</code></li>
